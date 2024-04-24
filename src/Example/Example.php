@@ -8,7 +8,7 @@ class Example
 {
     public function say(): string
     {
-        return phpinfo();
+        return 'hi';
     }
 }
 

@@ -1,8 +1,8 @@
 FROM php:8.1-fpm
 
 # set your user name, ex: user=bernardo
-ARG user=carlos
-ARG uid=1000
+ARG user=Lucas
+ARG uid=1001
 
 RUN apt-get update && apt-get install -y git
 
