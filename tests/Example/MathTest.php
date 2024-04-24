@@ -2,10 +2,25 @@
 
 use Src\Example\Math;
 
+beforeAll(function(){
+    echo "beforeAll \n";
+});
+
+afterAll(function(){
+    echo "afterAll \n";
+});
+
+beforeEach(function(){
+    echo "beforeEach \n";
+    $this->math = new Math;
+});
+
+afterEach(function(){
+    echo "afterEach \n";
+});
 
 it('test sum', function(){
-    $math = new Math;
-    $result = $math->sum(6, 2);
+    $result = $this->math->sum(6, 2);
 
     expect($result)->toBe(8);
     expect($result)->toBeInt();
@@ -13,16 +28,14 @@ it('test sum', function(){
 });
 
 it('Should return not empty of pi', function(){
-    $math = new Math;
-    $result = $math->pi();
+    $result = $this->math->pi();
 
     expect($result)->toBeFloat();
 
 });
 
 it('Should return a array matching their keys', function(){
-    $math = new Math;
-    $result = $math->location();
+    $result = $this->math->location();
 
     expect($result)->toBeArray();
     expect($result)->toMatchArray([
@@ -33,8 +46,7 @@ it('Should return a array matching their keys', function(){
 });
 
 it('Should return a array or empty', function(){
-    $math = new Math;
-    $result = $math->location();
+    $result = $this->math->location();
 
     expect($result)->toBeArray();
     expect($result)->toMatchArray([
@@ -42,7 +54,7 @@ it('Should return a array or empty', function(){
         'Altitude' => 854121365]
     );
 
-    $result2 = $math->location('example');
+    $result2 = $this->math->location('example');
     expect($result2)->toBeString();
     expect($result2)->toBe(strtoupper('example'));
     expect($result2)->not->toBeEmpty();
